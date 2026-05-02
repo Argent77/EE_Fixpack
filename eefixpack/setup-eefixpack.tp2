@@ -46,7 +46,7 @@ ALWAYS
 
 END
 
-VERSION ~Alpha 3~
+VERSION ~Beta 1~
 
 README ~eefixpack/languages/%LANGUAGE%/readme-eefixpack.html~ ~eefixpack/readme-eefixpack.html~
 
@@ -70,7 +70,6 @@ LANGUAGE
   ~French~
   ~fr_FR~
   ~eefixpack/languages/fr_FR/weidu.tra~
-  
 
 /////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\
 /////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\/////\\\\\
