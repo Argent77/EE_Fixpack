@@ -16,7 +16,7 @@
 <body>
 <p><strong>Developer note:</strong> this is essentially copy-pasted (minus this paragraph, natch) into the documentation pages on the G3 project page. Feel free to add/adjust the documentation as needed. The class <span class="bg2fp_beta">bg2fp_beta (red)</span> should be used to mark fixes that are in the Beta Core Fixes (nothing yet) and the <span class="bg2fp_modder">bg2fp_modder (magenta)</span> class should be used for modder notes. In the live pages, these are normally colored, but hidden, unless the user enables them. </p>
 <!-- documentation begins here -->
-<p>This documentation is complete as of April 17, 2026, through <a href="https://github.com/Gibberlings3/EE_Fixpack/commit/44edf42f38043d389a5dd24f6426bbf7e4edfe44">this commit</a>.</p>
+<p>This documentation is complete as of May 2, 2026, through Beta 1.</p>
 <p>
   <input id="cd_modder_show" name="cd_modder_show" onclick="$('.bg2fp_modder').css({'display':'block'}); $('span.bg2fp_modder').css({'display':'inline'}); $('#cd_modder_show').attr('disabled', 'disabled'); $('#cd_modder_hide').removeAttr('disabled');" type="button" value="Show Modder Notes" />
   <input disabled="disabled" id="cd_modder_hide" name="cd_modder_hide" onclick="$('.bg2fp_modder').css({'display':'none'}); $('span.bg2fp_modder').css({'display':'none'}); $('#cd_modder_hide').attr('disabled', 'disabled'); $('#cd_modder_show').removeAttr('disabled');" type="button" value="Hide Modder Notes" />
@@ -90,6 +90,7 @@
   <li>If the 'Show Triggers On Tab' option was enabled in the game's baldur.lua, it would show visible triggers over area triggers which are supposed to be invisible, e.g. a region used to prompt dialogue or a quest event <span class="bg2fp_modder">(oh5200.are, oh7200.are, oh8100.are)</span></li>
   <li>In the Watcher's Keep maze, the 'dead' or 'wild' magic effects from a room could remain active on the party when moving to a room that shouldn't have these effects for up to two rounds <span class="bg2fp_modder">(cdnowild.spl, cut202c.bcs, cut202d.bcs, cut202e.bcs, cut202f.bcs, cut202g.bcs, cut202h.bcs, cut202i.bcs, cut202j.bcs, cut202l.bcs)</span></li>
   <li>Keldorn and his zombie in the sewers can get stuck on top of each other if you enter and leave without meeting him <span class="bg2fp_modder">(keldorn.bcs)</span></li>
+  <li>In the staging area of the Black Pits II, several floor traps don't respond if you're wearing the Noser Uniform. Due to how the triggers were written, theses traps could go off substantially later when you removed the uniform. <span class="bg2fp_modder">(ohbloun1.bcs, ohbloun2.bcs, ohbloun3.bcs, ohbloun4.bcs)</span></li>
 </ul>
 <h3> <a name="dialogue_fixes" id="dialogue_fixes"></a>Dialogue Fixes <a href="#dialogue_fixes"><img src="https://content.invisioncic.com/u284679/monthly_2022_11/link.png.a311bee5fc8e33e5450e13e9586b2372.png" alt="Link to this section" width="14" height="9" /></a></h3>
 <ul>
@@ -107,6 +108,7 @@
   <li>Neera's comment when entering the Underdark only makes sense if you bypassed the Sahuagin City <span class="bg2fp_modder">(hexxat.bcs, neera.bcs, neeraj.dlg)</span></li>
   <li>Szass Tam's final journal entry could be missed on some dialogue paths <span class="bg2fp_modder">(ohnszass.dlg)</span></li>
   <li>If you ignored Brannel, the door guard, when taking over  Mae'Var's guild, his hint about being betrayed won't play and you get his introduction dialogue instead. <span class="bg2fp_modder">(shthdr01.dlg)</span></li>
+  <li>If Tagget cannot deliver his initial dialogue in the planar prison (e.g. he gets webbed), he should have more appropriate dialogue when he is able to speak again. <span class="bg2fp_modder">(ptagget.dlg)</span></li>
   <li>If actions in dialogues were misordered in a very specific and technical way, some of the actions (such as updating variables for quests) may not get executed. These action queues have been re-ordered to be more robust.<span class="bg2fp_modder"> (aataqah.dlg, aerie.dlg, aeriej.dlg, anomen.dlg, ar0602.bcs, arntra04.dlg, arnwar07.dlg, baerie.dlg, bjaheir.dlg, bodhi.dlg, bviconi.dlg, c6elhan2.dlg, degard.dlg, elearb11.dlg, escort4.dlg, firwlf01.dlg, goralt1.dlg, gorcamb.dlg, gorodr1.dlg, haerdaj.dlg, hellself.dlg, hexxatj.dlg, hlshang.dlg, jaertof.dlg, jaheiraj.dlg, keldorj.dlg, korganj.dlg, naliap.dlg, ohbdance.dlg, ohbgc01.dlg, ohddoor1.dlg, ohhstone.dlg, ohrjassa.dlg, pirmur04.dlg, pirmur08.dlg, plfarm06.dlg, plgirl01.dlg, ppdoor.dlg, ppireni2.dlg, ppsaem.dlg, rasaa25j.dlg, rasaadj.dlg, rgrwlf01.dlg, riftg01.dlg, rngwlf01.dlg, shape.dlg, suelleap.dlg, trskin03.dlg, uddrow04.dlg, udphae01.dlg, udvith.dlg, valygar.dlg, valygarj.dlg, viconi.dlg, viconij.dlg
     )</span></li>
 </ul>
@@ -360,6 +362,7 @@
   <li>Bodhi attempts to abduct romanced Neera, but a wild surge blocks the attempt and is supposed to bring her back right after the ensuing combat. However, Neera's reappearance could happen too soon, breaking the sequence and preventing Bodhi from leaving <span class="bg2fp_modder">(ar0800.bcs, bodhiamb.dlg)</span></li>
   <li>When hostile, the Celestial Hounds in Lunia were buffing the party instead of their allies <span class="bg2fp_modder">(ohdcdawg.bcs, ohdcdawg.cre, ohdcdaw2.spl, ohdcdawg.spl)</span></li>
   <li>The creature trader in Ust Natha could be interrupted when transferring creatures out of the cages; this is now done in a cutscene <span class="bg2fp_modder">(dadrow16.dlg)</span></li>
+  <li>Some script triggers in Athkatla were only checking if chapter=6 (instead of chapter &gt; 5), meaning they would break if you went to Sulanesselar, started chapter 7, and returned to the city. One of the bad triggers also spawned beholders in the sewers without checking if the Cult of the Eyeless was still active and is fixed as well. <span class="bg2fp_modder">(ar0802.bcs, ar0804.bcs, c6behold.bcs, c6goljug.bcs, c6golsto.bcs, c6mindul.bcs, c6rakraj.bcs, c6vamp.bcs , c6vamver.bcs, c6weregr.bcs)</span></li>
 </ul>
 <h3> <a name="animation_fixes" id="animation_fixes"></a>Animation Fixes <a href="#animation_fixes"><img src="https://content.invisioncic.com/u284679/monthly_2022_11/link.png.a311bee5fc8e33e5450e13e9586b2372.png" alt="Link to this section" width="14" height="9" /></a></h3>
 <ul>
@@ -421,6 +424,7 @@
   <p>This is a roundup of fixes that primarily impact modders and are not visible to players. </p>
   <ul>
     <li>IDS tables get sorted (all ids files)</li>
+    <li>Script triggers NearSavedLocation() and CheckItemSlot() are defined with their object and  string parameters in the wrong order (trigger.ids)</li>
     <li>class.ids, kit.ids, race.ids, and spell.ids <a href="https://www.gibberlings3.net/forums/topic/39225-discussion-syncing-raceclassids-across-bg-bg2-iwd/">have been synced</a> between BGEE, BG2EE, and IWDEE as best as we are able; also required an update to the Wave halberd (halb09.itm)</li>
     <li>The Neothelid lacked an ini file and correct animate/anisnd.ids entries. (3001.ini, animate.ids, anisnd.ids)</li>
     <li>Several of the splprot.2da entries (specifically, alignment checks) were mislabeled. (splprot.2da)</li>
